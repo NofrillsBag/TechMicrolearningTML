@@ -1,0 +1,238 @@
+/*This below grabs fonts that are not available locally on the system usually.*/
+
+/*Root changes are used to make the base rules you want the entire page to follow.*/
+:root {
+    --primary-color: #2b2e2f; 
+    --text-color: #ffffff; 
+    --spacing: 1rem; 
+}
+
+/*Body changes are normally used to apply those base variables to the page.*/
+body {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.title {
+    margin: 0;
+    display: inline-block;
+    line-height: 1;
+    height: auto;
+    position: absolute;
+    margin-right: 2rem; ;
+}
+
+
+    /*A Grid, which is usually used to split the page layout, in this case, 
+    we used a grid that has 2 columns.*/
+.container {
+    display: grid;
+    height: 100vh;
+
+    /*grid-template-rows: auto 1fr; means the first row will have a height that fits its content, 
+    and the second row will take up the remaining space.*/
+    grid-template-rows: auto 1fr;
+
+    /*grid-template-columns: 250px 1fr; 
+    means that the first column will be 250px wide and the   
+    2nd column will take up the remaining space (1fr).*/
+    grid-template-columns: auto 1fr;
+    transition: grid-template-columns 0.1s ease;
+}
+
+.container.closed {
+    grid-template-columns: auto 1fr;
+}
+
+/*When the container has the class "closed", we want to hide the sidebar CONTENT too
+The syntax is here, if the parent div has container closed, the sidebar will inherit this style.*/
+.container.closed .sidebar {
+    width: 0px;
+    padding: 0;
+    box-shadow: none;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.25);
+}
+
+/*The hero section is the top part of the page, and it spans across all columns in the first row.*/
+.hero {
+    background-color: #2b2e2f;
+    grid-column: 1/-1; /*This means that the hero section will span across all columns in the row it's in*/
+    padding: var(--spacing);
+    align-self: center; /*Vertical Allignment*/
+    border-bottom: 8px solid rgb(189, 194, 194);
+    display: grid;
+    justify-items: center; /*Horizontal Allignment*/
+}
+
+.hero img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    filter: brightness(1.5); /* 70% brightness */
+    margin-bottom: 1rem;
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    font-family: 'Montserrat', sans-serif;
+    left: 0;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 1rem;
+    font-family: 'Roboto Mono', monospace;
+    margin-top: 0.5rem;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+/*The sidebar section is the left side of the page, and it takes upt the first column in the second row.*/
+.sidebar {
+    background-color: #53595d;
+    padding: var(--spacing);
+    border-bottom-right-radius: 2px;
+    z-index: 1;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.25);
+    width: auto;
+    overflow: hidden;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: fit;
+}
+
+.divider {
+    width: 100%;
+    border: 1px solid #e6e6e7;
+    margin: 1rem 0;
+}
+
+.sidebar h1 {
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 0 1rem 0;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: normal;
+    margin: 0.5rem 0 0 0;
+}
+
+.sidebar img {
+    width: 100px;
+    height: 100px;
+    filter: brightness(1.5); /* 70% brightness */
+}
+
+.sidebar a {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    padding: 0;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.sidebar a:hover {
+    filter: brightness(1.2); /* 20% brighter on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.sidebar a:active {
+    filter: brightness(0.8); /* 20% darker on click */
+    transform: scale(0.95); /* Slightly shrink on click */
+}
+
+/*The main section is the right side of the page, and it takes up the second column in the second row.*/
+.main {
+    background-color: #4b4e51;
+    padding: var(--spacing);
+    position: relative;
+    padding-left: 3.5rem;
+}
+
+.hamburger {
+    position: absolute;
+    left: 1rem;
+    border: none;
+    width: 30px;
+    height: 30px;
+    background-color: #5b5e61;
+    color: var(--text-color);
+    cursor: pointer;
+    font-family: 'Roboto Mono', monospace;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar.closed .hamburger {
+    display: flex;
+    justify-content: center;
+}   
+
+
+
+
+/*Positioning can be used make elements stay in certain places*/
+    /*We'd use ABSOLUTE as a sticker in relation to a div, it doesn't move*/
+    /*We'd use FIXED for somthing that doesn't move at all, in relation to the entire page*/
+    /*Sticky only is fixed on the page when it's scrolled past, like a title it follows down as I scroll*/
+
+.lab-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 80px;
+    justify-content: center;
+    margin-top: 6rem;
+}
+
+.lab-card {
+    flex: 1 1 250px;
+    max-width: 250px;
+    background-color: #5b5e61;
+    color: var(--text-color);
+    padding: var(--spacing);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+
+.lab-card p {
+    word-wrap: break-word;
+    color: #e6e6e7;
+}
+
+.lab-card a {
+    color: #e6e6e7;
+    text-decoration: underline  ;
+    gap: 0.5rem;
+    align-items: center;
+
+}
+
+.lab-card a:visited {
+    color: #d8d8d8;
+}
+
+.lab-card img {
+    width: 90%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    align-items: center;
+    justify-items: center;
+    margin-left: 12px;
+}
+
+.lab-card:hover {
+    transform: translateY(-5px);
+    cursor: grab;
+}
